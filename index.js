@@ -40,8 +40,7 @@ function guessTheLetter(letter) {
   for (var j = 0; j < chosenWord.length; ++j) {
     if (letter == chosenWord[j]) {
       ++noOfLettersFound;
-      underline = underline.replaceAt((j * 3 + 1), chosenWord[j].toUpperCase());
-      document.getElementById("underlines").innerHTML = underline;
+      displayWord(j);
       flag = 1;
     } else if (j == chosenWord.length - 1 && flag == 0) {
       ++mistakes;
@@ -58,6 +57,11 @@ function guessTheLetter(letter) {
     document.getElementById("modalBody").innerHTML = "You just won! I encourage you to play again!";
     document.getElementById("myModal").style.display = "block";
   }
+}
+
+function displayWord(j) {
+  underline = underline.replaceAt((j * 3 + 1), chosenWord[j].toUpperCase());
+  document.getElementById("underlines").innerHTML = underline;
 }
 
 chooseWord();
