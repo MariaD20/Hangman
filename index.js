@@ -53,7 +53,7 @@ function guessTheLetter(letter) {
     document.getElementById("modalTitle").innerHTML = "You just lost";
     document.getElementById("modalBody").innerHTML = "But...you can play once again!";
     document.getElementById("myModal").style.display = "block";
-  } else if (mistakes <= tries && noOfLettersFound == chosenWord.length) {
+  } else if (noOfLettersFound == chosenWord.length) {
     document.getElementById("modalTitle").innerHTML = "Congratulations!";
     document.getElementById("modalBody").innerHTML = "You just won! I encourage you to play again!";
     document.getElementById("myModal").style.display = "block";
