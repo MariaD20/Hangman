@@ -40,7 +40,8 @@ function guessTheLetter(letter) {
   for (var j = 0; j < chosenWord.length; ++j) {
     if (letter == chosenWord[j]) {
       ++noOfLettersFound;
-      displayWord(j);
+      underline = underline.replaceAt((j * 3 + 1), chosenWord[j].toUpperCase());
+      document.getElementById("underlines").innerHTML = underline;;
       flag = 1;
     } else if (j == chosenWord.length - 1 && flag == 0) {
       ++mistakes;
@@ -48,20 +49,17 @@ function guessTheLetter(letter) {
     }
   }
   document.getElementById(letter).setAttribute("disabled", true);
-  if (mistakes == tries && noOfLettersFound < chosenWord.length) {
-    document.getElementById("modalTitle").innerHTML = "You just lost";
-    document.getElementById("modalBody").innerHTML = "But...you can play once again!";
-    document.getElementById("myModal").style.display = "block";
-  } else if (noOfLettersFound == chosenWord.length) {
-    document.getElementById("modalTitle").innerHTML = "Congratulations!";
-    document.getElementById("modalBody").innerHTML = "You just won! I encourage you to play again!";
-    document.getElementById("myModal").style.display = "block";
-  }
+    if (mistakes == tries && noOfLettersFound < chosenWord.length) {
+      displayModal("You just lost", "But...you can play once again!", "block");
+    } else if (noOfLettersFound == chosenWord.length) {
+      displayModal("Congratulations!", "You just won! I encourage you to play again!", "block");
+    }
 }
 
-function displayWord(j) {
-  underline = underline.replaceAt((j * 3 + 1), chosenWord[j].toUpperCase());
-  document.getElementById("underlines").innerHTML = underline;
+function displayModal(modalTitleText, modalBodyText, myModalStyle) {
+  document.getElementById("modalTitle").innerHTML = modalTitleText;
+  document.getElementById("modalBody").innerHTML = modalBodyText;
+  document.getElementById("myModal").style.display = myModalStyle;
 }
 
 chooseWord();
